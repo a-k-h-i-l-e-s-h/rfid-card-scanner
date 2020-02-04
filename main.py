@@ -49,14 +49,14 @@ def is_connected():
 
 def cardScan():
     global cardScanQueue
-    #device = InputDevice("/dev/input/event0") # my keyboard
-    #for event in device.read_loop():
-    #    if event.type == ecodes.EV_KEY:
-    #        card_number = event.code
-    #        cur_time =  str(int(round(time.time() * 1000)))
-    #        scanner_type = confPar["DEFAULT","SCANNER_TYPE"]
-    #        payload = '{"card_number":"'+card_number+'","scan_time":"'+cur_time+'","scanner_type":"'+scanner_type+'"}' 
-    #        cardScanQueue.append(payload)
+    device = InputDevice("/dev/input/event0") # my keyboard
+    for event in device.read_loop():
+        if event.type == ecodes.EV_KEY:
+            card_number = event.code
+            cur_time =  str(int(round(time.time() * 1000)))
+            scanner_type = confPar["DEFAULT","SCANNER_TYPE"]
+            payload = '{"card_number":"'+card_number+'","scan_time":"'+cur_time+'","scanner_type":"'+scanner_type+'"}' 
+            cardScanQueue.append(payload)
 
 
 def publishtoMQTT():
